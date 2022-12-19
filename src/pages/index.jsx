@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image';
 
 import { Workspaces } from '@/modules/Workplaces';
 import { Layout } from '@/components/Layout';
@@ -7,6 +8,8 @@ import PIC_SVG from '@/images/logotypes/placeholder.svg';
 import MFD_SVG from '@/images/logotypes/mfd.svg';
 import ENP_SVG from '@/images/logotypes/enp.svg';
 import WP_SVG from '@/images/logotypes/wp.svg';
+
+import image from '@/images/image.JPG';
 
 export default function Home({
   data: {
@@ -35,7 +38,19 @@ export default function Home({
             </div>
           </div>
 
-          <Workspaces workplaces={workplaces}></Workspaces>
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-y-12">
+            <Image
+              className="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+              sizes="(min-width: 1024px) 32rem, 20rem"
+              src={layout.image}
+              alt=""
+            />
+
+            <Workspaces
+              className="lg:order-first"
+              workplaces={workplaces}
+            ></Workspaces>
+          </div>
         </div>
       </Layout>
     </>
@@ -105,6 +120,7 @@ export async function getStaticProps() {
             title: 'Hello I’m Mateusz Flisikowski',
             intro:
               'I’m a Design-oriented Front-end Developer passionate about modern technologies specializing in responsive web design, modern CSS, Javascript and accessibility. I work with my clients to create interfaces and design systems that work for everyone.',
+            image,
           },
           title: 'Mateusz Flisikowski',
           metas: [],

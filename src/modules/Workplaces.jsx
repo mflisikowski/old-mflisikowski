@@ -1,6 +1,7 @@
 import { ArrowDownIcon, BriefcaseIcon } from '@/components/Icons';
 import { Button } from '@/components/Button';
 import Image from 'next/image';
+import clsx from 'clsx';
 
 const WorkspaceItem = ({ role: { id, logo, company, title, start, end } }) => {
   return (
@@ -29,9 +30,14 @@ const WorkspaceItem = ({ role: { id, logo, company, title, start, end } }) => {
   );
 };
 
-export function Workspaces({ workplaces }) {
+export function Workspaces({ workplaces, className }) {
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40 lg:max-w-none">
+    <div
+      className={clsx(
+        'rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40 lg:max-w-none',
+        className
+      )}
+    >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <BriefcaseIcon className="ml-2 h-6 w-6 flex-none" />
         <span className="ml-3">Work</span>
