@@ -1,8 +1,9 @@
+import configuration from 'website-config';
+
 import { Layout } from '@/modules/Layout';
 import { Intro } from '@/modules/Intro';
 
 import Head from 'next/head';
-import configuration from 'website-config';
 
 export default function Uses({
   data: {

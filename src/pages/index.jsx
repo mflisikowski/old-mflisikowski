@@ -1,10 +1,11 @@
 import configuration from 'website-config';
-import Head from 'next/head';
 
 import { PortraitImage } from '@/modules/PortraitImage';
 import { Workspaces } from '@/modules/Workplaces';
 import { Layout } from '@/modules/Layout';
 import { Intro } from '@/modules/Intro';
+
+import Head from 'next/head';
 
 export default function Home({
   data: {
