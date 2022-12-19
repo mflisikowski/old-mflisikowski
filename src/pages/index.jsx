@@ -1,9 +1,17 @@
-import { Layout } from '@/components/Layout';
 import Head from 'next/head';
+
+import { Workspaces } from '@/modules/Workplaces';
+import { Layout } from '@/components/Layout';
+
+import PIC_SVG from '@/images/logotypes/placeholder.svg';
+import MFD_SVG from '@/images/logotypes/mfd.svg';
+import ENP_SVG from '@/images/logotypes/enp.svg';
+import WP_SVG from '@/images/logotypes/wp.svg';
 
 export default function Home({
   data: {
     page: { layout, title, metas },
+    workplaces,
   },
 }) {
   return (
@@ -26,6 +34,8 @@ export default function Home({
               <p>{layout.intro}</p>
             </div>
           </div>
+
+          <Workspaces workplaces={workplaces}></Workspaces>
         </div>
       </Layout>
     </>
@@ -33,6 +43,60 @@ export default function Home({
 }
 
 export async function getStaticProps() {
+  const workplaces = [
+    {
+      id: '1',
+      company: 'Mateusz Flisikowski Development',
+      title: 'Owner',
+      logo: MFD_SVG,
+      start: '2019',
+      end: {
+        label: 'Present',
+        dateTime: new Date().getFullYear(),
+      },
+    },
+    {
+      id: '2',
+      company: 'E NET PRODUCTION sp. z o.o.',
+      title: 'Front-end Developer',
+      logo: ENP_SVG,
+      start: '2019',
+      end: '2022',
+    },
+    {
+      id: '3',
+      company: 'Wirtualna Polska Media Sp. z o.o',
+      title: 'Front-end Developer',
+      logo: WP_SVG,
+      start: '2015',
+      end: '2019',
+    },
+    {
+      id: '4',
+      company: 'Nord Systems Sp. z o.o.',
+      title: 'Front-end Developer',
+      logo: PIC_SVG,
+      start: '2014',
+      end: '2015',
+    },
+    {
+      id: '5',
+      company: 'Not related ',
+      title: 'to the IT industry',
+      logo: PIC_SVG,
+      start: '2006',
+      end: '2014',
+    },
+    {
+      id: '6',
+      company: 'Interbit Sp. z o.o',
+      title: 'Junior Webmaster',
+      logo: PIC_SVG,
+      start: '2006',
+      end: '2006',
+    },
+  ];
+
   return {
     props: {
       data: {
@@ -45,6 +109,7 @@ export async function getStaticProps() {
           title: 'Mateusz Flisikowski',
           metas: [],
         },
+        workplaces,
       },
     },
   };
