@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import Image from 'next/image';
 
+import { PortraitImage } from '@/modules/PortraitImage';
 import { Workspaces } from '@/modules/Workplaces';
 import { Layout } from '@/components/Layout';
 
@@ -9,7 +9,7 @@ import MFD_SVG from '@/images/logotypes/mfd.svg';
 import ENP_SVG from '@/images/logotypes/enp.svg';
 import WP_SVG from '@/images/logotypes/wp.svg';
 
-import image from '@/images/image.JPG';
+import PORTRAIT_IMG from '@/images/image.JPG';
 
 export default function Home({
   data: {
@@ -17,6 +17,9 @@ export default function Home({
     workplaces,
   },
 }) {
+  // temp solution for fix workspaces image source, before API based media storage;
+  console.log(PIC_SVG, MFD_SVG, ENP_SVG, WP_SVG, PORTRAIT_IMG);
+
   return (
     <>
       <Head>
@@ -39,13 +42,10 @@ export default function Home({
           </div>
 
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-y-12">
-            <Image
-              className="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
-              sizes="(min-width: 1024px) 32rem, 20rem"
-              src={layout.image}
-              alt=""
+            <PortraitImage
+              visibilityRegions={layout.image.visibilityRegions}
+              src={layout.image.src}
             />
-
             <Workspaces
               className="lg:order-first"
               workplaces={workplaces}
@@ -120,7 +120,10 @@ export async function getStaticProps() {
             title: 'Hello I’m Mateusz Flisikowski',
             intro:
               'I’m a Design-oriented Front-end Developer passionate about modern technologies specializing in responsive web design, modern CSS, Javascript and accessibility. I work with my clients to create interfaces and design systems that work for everyone.',
-            image,
+            image: {
+              visibilityRegions: ['Europe/Warsaw'],
+              src: PORTRAIT_IMG,
+            },
           },
           title: 'Mateusz Flisikowski',
           metas: [],
