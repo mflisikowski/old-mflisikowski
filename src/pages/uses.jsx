@@ -1,8 +1,8 @@
 import configuration from 'website-config';
 
 import { ChevronRightIcon } from '@/icons/ChevronIcon';
+import { Section } from '@/components/Section';
 import { LinkIcon } from '@/icons/LinkIcon';
-import { Section } from '@/modules/Section';
 import { Layout } from '@/modules/Layout';
 
 import Head from 'next/head';
