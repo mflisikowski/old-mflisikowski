@@ -117,7 +117,13 @@ export async function getStaticProps() {
             intro:
               'I’m a Design-oriented Front-end Developer passionate about modern technologies specializing in responsive web design, modern CSS, Javascript and accessibility. I work with my clients to create interfaces and design systems that work for everyone.',
             image: {
-              visibilityRegions: ['Europe/Warsaw'],
+              visibilityRegions: [
+                'Europe/Copenhagen',
+                'Europe/Stockholm',
+                'Europe/Warsaw',
+                'Europe/Oslo',
+                'Asia/Bangkok',
+              ],
               src: PORTRAIT_IMG,
             },
           },
