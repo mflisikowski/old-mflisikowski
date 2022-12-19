@@ -6,12 +6,15 @@ export function PortraitImage({ visibilityRegions = [], src }) {
 
   return (
     isVisibile && (
-      <Image
-        className="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
-        sizes="(min-width: 1024px) 32rem, 20rem"
-        src={src}
-        alt=""
-      />
+      <div className="relative h-96 lg:h-auto">
+        <Image
+          className="aspect-square rounded-xl bg-zinc-100 object-cover dark:bg-zinc-800 lg:rounded-2xl"
+          unoptimized
+          src={src}
+          alt=""
+          fill
+        />
+      </div>
     )
   );
 }
