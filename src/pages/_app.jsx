@@ -1,3 +1,6 @@
+import { Footer } from '@/modules/Footer';
+import { Header } from '@/modules/Header';
+
 import '@/styles/tailwind.css';
 import 'focus-visible';
 
@@ -11,9 +14,11 @@ export default function App({ Component, pageProps }) {
       </div>
 
       <div className="relative">
+        <Header />
         <main>
           <Component {...pageProps} />
         </main>
+        <Footer />
       </div>
     </>
   );
