@@ -1,5 +1,8 @@
+import configuration from 'website-config';
+
 import { Layout } from '@/modules/Layout';
 import { Intro } from '@/modules/Intro';
+
 import Head from 'next/head';
 
 export default function Projects({
@@ -29,17 +32,16 @@ export default function Projects({
 }
 
 export async function getStaticProps() {
+  const { projects } = configuration?.pages;
+  const { layout, metas, title } = projects;
+
   return {
     props: {
       data: {
         page: {
-          layout: {
-            title: 'Things I’ve made.',
-            intro:
-              'I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved.',
-          },
-          title: 'Projects - Mateusz Flisikowski',
-          metas: [],
+          layout,
+          title,
+          metas,
         },
       },
     },

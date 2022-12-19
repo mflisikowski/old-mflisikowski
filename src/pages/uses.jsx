@@ -1,6 +1,8 @@
 import { Layout } from '@/modules/Layout';
 import { Intro } from '@/modules/Intro';
+
 import Head from 'next/head';
+import configuration from 'website-config';
 
 export default function Uses({
   data: {
@@ -29,18 +31,16 @@ export default function Uses({
 }
 
 export async function getStaticProps() {
+  const { uses } = configuration?.pages;
+  const { layout, metas, title } = uses;
+
   return {
     props: {
       data: {
         page: {
-          layout: {
-            title:
-              'Software I use, gadgets I love, and other things I recommend.',
-            intro:
-              'I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff.',
-          },
-          title: 'Uses - Mateusz Flisikowski',
-          metas: [],
+          layout,
+          title,
+          metas,
         },
       },
     },

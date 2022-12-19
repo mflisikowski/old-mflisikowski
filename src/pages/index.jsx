@@ -1,26 +1,16 @@
+import configuration from 'website-config';
 import Head from 'next/head';
 
 import { PortraitImage } from '@/modules/PortraitImage';
 import { Workspaces } from '@/modules/Workplaces';
 import { Layout } from '@/modules/Layout';
-
-import PIC_SVG from '@/images/logotypes/placeholder.svg';
-import MFD_SVG from '@/images/logotypes/mfd.svg';
-import ENP_SVG from '@/images/logotypes/enp.svg';
-import WP_SVG from '@/images/logotypes/wp.svg';
-
-import PORTRAIT_IMG from '@/images/image.JPG';
 import { Intro } from '@/modules/Intro';
 
 export default function Home({
   data: {
-    page: { layout, title, metas },
-    workplaces,
+    page: { workplaces, layout, title, metas },
   },
 }) {
-  // temp solution for fix workspaces image source, before API based media storage;
-  console.log(PIC_SVG, MFD_SVG, ENP_SVG, WP_SVG, PORTRAIT_IMG);
-
   return (
     <>
       <Head>
@@ -53,84 +43,20 @@ export default function Home({
   );
 }
 
-export async function getStaticProps() {
-  const workplaces = [
-    {
-      id: '1',
-      company: 'Mateusz Flisikowski Development',
-      title: 'Owner',
-      logo: MFD_SVG,
-      start: '2019',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear(),
-      },
-    },
-    {
-      id: '2',
-      company: 'E NET PRODUCTION sp. z o.o.',
-      title: 'Front-end Developer',
-      logo: ENP_SVG,
-      start: '2019',
-      end: '2022',
-    },
-    {
-      id: '3',
-      company: 'Wirtualna Polska Media Sp. z o.o',
-      title: 'Front-end Developer',
-      logo: WP_SVG,
-      start: '2015',
-      end: '2019',
-    },
-    {
-      id: '4',
-      company: 'Nord Systems Sp. z o.o.',
-      title: 'Front-end Developer',
-      logo: PIC_SVG,
-      start: '2014',
-      end: '2015',
-    },
-    {
-      id: '5',
-      company: 'Not related ',
-      title: 'to the IT industry',
-      logo: PIC_SVG,
-      start: '2006',
-      end: '2014',
-    },
-    {
-      id: '6',
-      company: 'Interbit Sp. z o.o',
-      title: 'Junior Webmaster',
-      logo: PIC_SVG,
-      start: '2006',
-      end: '2006',
-    },
-  ];
+export function getStaticProps() {
+  const { layout, metas, title } = configuration?.pages?.home;
+  const { workplaces, socials } = configuration;
 
   return {
     props: {
       data: {
         page: {
-          layout: {
-            title: 'Hello I’m Mateusz Flisikowski',
-            intro:
-              'I’m a Design-oriented Front-end Developer passionate about modern technologies specializing in responsive web design, modern CSS, Javascript and accessibility. I work with my clients to create interfaces and design systems that work for everyone.',
-            image: {
-              visibilityRegions: [
-                'Europe/Copenhagen',
-                'Europe/Stockholm',
-                'Europe/Warsaw',
-                'Europe/Oslo',
-                'Asia/Bangkok',
-              ],
-              src: PORTRAIT_IMG,
-            },
-          },
-          title: 'Mateusz Flisikowski',
-          metas: [],
+          layout,
+          title,
+          metas,
+          workplaces,
+          socials,
         },
-        workplaces,
       },
     },
   };

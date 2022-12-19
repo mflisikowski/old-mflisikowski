@@ -1,6 +1,7 @@
 import { Container } from '@/modules/Container';
+import Link from 'next/link';
 
-export function Footer() {
+export function Footer({ socials }) {
   return (
     <footer className="mt-32">
       <Container.Outer>
@@ -8,7 +9,17 @@ export function Footer() {
           <Container.Inner>
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                Contact here
+                {socials?.map(({ id, href, label }) => (
+                  <Link
+                    key={id}
+                    className="group -m-1 p-1"
+                    aria-label={label}
+                    target="_blank"
+                    href={href}
+                  >
+                    {label}
+                  </Link>
+                ))}
               </div>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">
                 &copy; {new Date().getFullYear()}
