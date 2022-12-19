@@ -1,4 +1,4 @@
-import { Layout } from '@/components/Layout';
+import { Layout } from '@/modules/Layout';
 import { Intro } from '@/modules/Intro';
 import Head from 'next/head';
 

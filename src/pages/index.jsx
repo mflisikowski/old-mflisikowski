@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import { PortraitImage } from '@/modules/PortraitImage';
 import { Workspaces } from '@/modules/Workplaces';
-import { Layout } from '@/components/Layout';
+import { Layout } from '@/modules/Layout';
 
 import PIC_SVG from '@/images/logotypes/placeholder.svg';
 import MFD_SVG from '@/images/logotypes/mfd.svg';

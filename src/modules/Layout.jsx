@@ -1,4 +1,4 @@
-import { Container } from '@/components/Container';
+import { Container } from '@/modules/Container';
 
 export function Layout({ title, intro, children }) {
   return (
