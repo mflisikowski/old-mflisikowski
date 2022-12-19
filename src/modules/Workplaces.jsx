@@ -1,5 +1,7 @@
-import { ArrowDownIcon, BriefcaseIcon } from '@/components/Icons';
+import { BriefcaseIcon } from '@/icons/BriefcaseIcon';
+import { ArrowDownIcon } from '@/icons/ArrowIcon';
 import { Button } from '@/components/Button';
+
 import Image from 'next/image';
 import clsx from 'clsx';
 

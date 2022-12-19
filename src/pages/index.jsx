@@ -9,7 +9,8 @@ import Head from 'next/head';
 
 export default function Home({
   data: {
-    page: { workplaces, layout, title, metas },
+    page: { layout, title, metas },
+    workplaces,
   },
 }) {
   return (
@@ -33,10 +34,7 @@ export default function Home({
               visibilityRegions={layout.image.visibilityRegions}
               src={layout.image.src}
             />
-            <Workspaces
-              className="lg:order-first"
-              workplaces={workplaces}
-            ></Workspaces>
+            <Workspaces className="lg:order-first" workplaces={workplaces} />
           </div>
         </div>
       </Layout>
@@ -55,9 +53,9 @@ export function getStaticProps() {
           layout,
           title,
           metas,
-          workplaces,
-          socials,
         },
+        workplaces,
+        socials,
       },
     },
   };

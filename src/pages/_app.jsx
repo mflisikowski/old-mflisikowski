@@ -5,7 +5,7 @@ import '@/styles/tailwind.css';
 import 'focus-visible';
 
 export default function App({ Component, pageProps }) {
-  const { socials } = pageProps?.data?.page;
+  const { socials } = pageProps?.data;
 
   return (
     <>
