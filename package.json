@@ -11,6 +11,7 @@
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
     "@headlessui/react": "^1.7.7",
+    "@supabase/supabase-js": "^2.2.1",
     "@tailwindcss/typography": "^0.5.4",
     "autoprefixer": "^10.4.12",
     "cal-sans": "^1.0.1",
