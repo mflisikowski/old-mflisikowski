@@ -138,60 +138,6 @@ const uses = {
   },
 };
 
-const workplaces = [
-  {
-    id: '1',
-    company: 'Mateusz Flisikowski Development',
-    title: 'Owner',
-    logo: 'https://ucarecdn.com/25a53619-c475-4cf0-9c69-c0aa123ad26f/workplacemfd.svg',
-    start: '2019',
-    end: {
-      label: 'Present',
-      dateTime: new Date().getFullYear(),
-    },
-  },
-  {
-    id: '2',
-    company: 'E NET PRODUCTION sp. z o.o.',
-    title: 'Front-end Developer',
-    logo: 'https://ucarecdn.com/e25cf388-dc9d-4e34-a7f9-1192e014f79b/workplaceenp.svg',
-    start: '2019',
-    end: '2022',
-  },
-  {
-    id: '3',
-    company: 'Wirtualna Polska Media Sp. z o.o',
-    title: 'Front-end Developer',
-    logo: 'https://ucarecdn.com/325bcca8-c615-4124-81cf-2c02fb9b4d05/workplacewp.svg',
-    start: '2015',
-    end: '2019',
-  },
-  {
-    id: '4',
-    company: 'Nord Systems Sp. z o.o.',
-    title: 'Front-end Developer',
-    logo: 'https://ucarecdn.com/46eba137-03fa-483a-869c-8b1ea6eb9e7f/workplaceplaceholder.svg',
-    start: '2014',
-    end: '2015',
-  },
-  {
-    id: '5',
-    company: 'Not related ',
-    title: 'to the IT industry',
-    logo: 'https://ucarecdn.com/46eba137-03fa-483a-869c-8b1ea6eb9e7f/workplaceplaceholder.svg',
-    start: '2006',
-    end: '2014',
-  },
-  {
-    id: '6',
-    company: 'Interbit Sp. z o.o',
-    title: 'Junior Webmaster',
-    logo: 'https://ucarecdn.com/46eba137-03fa-483a-869c-8b1ea6eb9e7f/workplaceplaceholder.svg',
-    start: '2006',
-    end: '2006',
-  },
-];
-
 const configuration = {
   pages: {
     home: {
@@ -207,7 +153,7 @@ const configuration = {
             'Europe/Oslo',
             'Asia/Bangkok',
           ],
-          src: 'https://ucarecdn.com/2ff13d60-3bb1-4a6e-be58-ea0c8986a3e3/image.jpg',
+          src: '2ff13d60-3bb1-4a6e-be58-ea0c8986a3e3',
         },
       },
       title: `Home Page - ${title}`,
@@ -232,7 +178,6 @@ const configuration = {
       metas: [],
     },
   },
-  workplaces,
   projects,
   uses,
 };

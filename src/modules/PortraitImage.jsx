@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { CustomImage } from '@/components/CustomImage';
 
 export function PortraitImage({ visibilityRegions = [], src }) {
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -7,12 +7,9 @@ export function PortraitImage({ visibilityRegions = [], src }) {
   return (
     isVisibile && (
       <div className="relative h-96 lg:h-auto">
-        <Image
+        <CustomImage
           className="aspect-square rounded-xl bg-zinc-100 object-cover dark:bg-zinc-800 lg:rounded-2xl"
-          unoptimized
           src={src}
-          alt=""
-          fill
         />
       </div>
     )

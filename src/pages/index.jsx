@@ -1,5 +1,6 @@
 import configuration from 'website-config';
 
+import { getAllWorkspaces } from '@/services/getAllWorkspaces';
 import { PortraitImage } from '@/modules/PortraitImage';
 import { Workspaces } from '@/modules/Workplaces';
 import { Layout } from '@/modules/Layout';
@@ -34,6 +35,7 @@ export default function Home({
               visibilityRegions={layout.image.visibilityRegions}
               src={layout.image.src}
             />
+
             <Workspaces className="lg:order-first" workplaces={workplaces} />
           </div>
         </div>
@@ -42,9 +44,9 @@ export default function Home({
   );
 }
 
-export function getStaticProps() {
+export const getStaticProps = async () => {
   const { layout, metas, title } = configuration?.pages?.home;
-  const { workplaces } = configuration;
+  const { workplaces } = await getAllWorkspaces();
 
   return {
     props: {
@@ -58,4 +60,4 @@ export function getStaticProps() {
       },
     },
   };
-}
+};
