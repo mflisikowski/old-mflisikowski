@@ -13,13 +13,15 @@ export function ArrowDownIcon(props) {
 
 export function ArrowLeftIcon(props) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M20 .755 5.626 12 20 23.219l-.619.781L4 12 19.391 0 20 .755z" />
     </svg>
   );
 }
