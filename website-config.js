@@ -192,24 +192,6 @@ const workplaces = [
   },
 ];
 
-const socials = [
-  {
-    id: '1',
-    label: 'Github',
-    href: 'https://github.com/mflisikowski',
-  },
-  {
-    id: '2',
-    label: 'Linkedin',
-    href: 'https://www.linkedin.com/in/mateusz-flisikowski/',
-  },
-  {
-    id: '3',
-    label: 'Email',
-    href: 'mailto:contact@mflisikowski.dev',
-  },
-];
-
 const configuration = {
   pages: {
     home: {
@@ -252,7 +234,6 @@ const configuration = {
   },
   workplaces,
   projects,
-  socials,
   uses,
 };
 

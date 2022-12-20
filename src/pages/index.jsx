@@ -44,7 +44,7 @@ export default function Home({
 
 export function getStaticProps() {
   const { layout, metas, title } = configuration?.pages?.home;
-  const { workplaces, socials } = configuration;
+  const { workplaces } = configuration;
 
   return {
     props: {
@@ -55,7 +55,6 @@ export function getStaticProps() {
           metas,
         },
         workplaces,
-        socials,
       },
     },
   };

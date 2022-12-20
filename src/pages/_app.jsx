@@ -5,8 +5,6 @@ import '@/styles/tailwind.css';
 import 'focus-visible';
 
 export default function App({ Component, pageProps }) {
-  const { socials } = pageProps?.data;
-
   return (
     <>
       <div className="fixed inset-0 flex justify-center sm:px-8">
@@ -20,7 +18,25 @@ export default function App({ Component, pageProps }) {
         <main>
           <Component {...pageProps} />
         </main>
-        <Footer socials={socials} />
+        <Footer
+          socials={[
+            {
+              id: '1',
+              label: 'Github',
+              href: 'https://github.com/mflisikowski',
+            },
+            {
+              id: '2',
+              label: 'Linkedin',
+              href: 'https://www.linkedin.com/in/mateusz-flisikowski/',
+            },
+            {
+              id: '3',
+              label: 'Email',
+              href: 'mailto:contact@mflisikowski.dev',
+            },
+          ]}
+        />
       </div>
     </>
   );

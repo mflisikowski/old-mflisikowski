@@ -81,7 +81,7 @@ export default function Uses({
 
 export async function getStaticProps() {
   const { layout, metas, title } = configuration?.pages?.uses;
-  const { socials, uses } = configuration;
+  const { uses } = configuration;
 
   return {
     props: {
@@ -91,7 +91,6 @@ export async function getStaticProps() {
           title,
           metas,
         },
-        socials,
         uses,
       },
     },
