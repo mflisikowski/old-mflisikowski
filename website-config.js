@@ -4,21 +4,7 @@ const projects = {
   websites: {
     id: 1,
     title: 'Websites',
-    projects: [
-      {
-        title: 'mflisikowski.dev',
-        description: 'portfolio website',
-        logo: 'https://ucarecdn.com/25a53619-c475-4cf0-9c69-c0aa123ad26f/workplacemfd.svg',
-        github: {
-          url: 'https://github.com/mflisikowski/mflisikowski',
-          label: 'www.mflisikowski.dev',
-        },
-        link: {
-          url: 'https://mflisikowski.dev',
-          label: 'www.mflisikowski.dev',
-        },
-      },
-    ],
+    projects: [],
   },
   opensource: {
     id: 2,
