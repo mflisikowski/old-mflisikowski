@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Categories {
+  id         String   @id(map: "uses_categories_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  key        String   @default("")
+  name       String   @default("")
+  Uses       Uses[]
+}
+
+model Projects {
+  id              String   @id(map: "projects_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  created_at      DateTime @default(now()) @db.Timestamptz(6)
+  name            String   @default("")
+  repository_name String   @default("")
+  repository_url  String   @default("")
+  development_url String   @default("")
+  production_url  String   @default("")
+  category_name   String   @default("")
+  category_id     String
+}
+
+model Socials {
+  id         String   @id(map: "socials_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  name       String   @default("")
+  url        String   @default("")
+  mailto     String   @default("")
+}
+
+model Uses {
+  id          String     @id(map: "uses_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  created_at  DateTime   @default(now()) @db.Timestamptz(6)
+  name        String     @default("")
+  description String     @default("")
+  link        Boolean
+  link_label  String     @default("")
+  link_url    String     @default("")
+  category_id String     @db.Uuid
+  Categories  Categories @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Workplaces {
+  created_at       DateTime @default(now()) @db.Timestamptz(6)
+  company_name     String   @default("") @db.VarChar
+  company_logotype String   @default("") @db.VarChar
+  job_title        String   @default("") @db.VarChar
+  job_start        Decimal  @db.Decimal
+  job_end          Decimal  @db.Decimal
+  job_present      Boolean  @default(false)
+  id               String   @id(map: "workplaces_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+}
