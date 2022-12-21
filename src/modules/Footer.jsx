@@ -9,13 +9,13 @@ export function Footer({ socials }) {
           <Container.Inner>
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                {socials?.map(({ id, url, name }) => (
+                {socials?.map(({ id, url, name, mailto }) => (
                   <Link
                     key={id}
                     className="group -m-1 p-1"
                     aria-label={name}
                     target="_blank"
-                    href={url}
+                    href={url || mailto}
                   >
                     {name}
                   </Link>

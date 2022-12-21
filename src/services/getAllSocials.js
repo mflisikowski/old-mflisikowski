@@ -1,10 +1,14 @@
-import { UseSupabase } from '@/composables/supabase';
+import { prisma } from '@/composables/prisma';
 
+// https://github.com/prisma/prisma/issues/4328
 export const getAllSocials = async () => {
-  const client = UseSupabase();
-  const response = await client.from('socials').select('*').order('id');
+  const unserialized = await prisma.socials.findMany({});
+  const serialized = [...unserialized].map((unserialize) => ({
+    ...unserialize,
+    created_at: new Date(unserialize.created_at).toISOString(),
+  }));
 
   return {
-    socials: response.data || [],
+    socials: serialized,
   };
 };
