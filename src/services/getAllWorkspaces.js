@@ -1,10 +1,14 @@
-import { UseSupabase } from '@/composables/supabase';
+import { prisma } from '@/composables/prisma';
 
+// https://github.com/prisma/prisma/issues/4328
 export const getAllWorkspaces = async () => {
-  const client = UseSupabase();
-  const response = await client.from('workplaces').select('*').order('id');
+  const unserialized = await prisma.workplaces.findMany({});
+  const serialized = [...unserialized].map((unserialize) => ({
+    ...unserialize,
+    created_at: new Date(unserialize.created_at).toISOString(),
+  }));
 
   return {
-    workplaces: response.data || [],
+    workplaces: serialized,
   };
 };
