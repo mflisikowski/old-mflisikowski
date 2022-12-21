@@ -1,3 +1,4 @@
+import { getAllSocials } from '@/services/getAllSocials';
 import configuration from 'website-config';
 
 import { ChevronRightIcon } from '@/icons/ChevronIcon';
