@@ -70,7 +70,8 @@ export default function Projects({
 
 export async function getStaticProps() {
   const { layout, metas, title } = configuration?.pages?.projects;
-  const { socials, projects } = configuration;
+  const { socials } = await getAllSocials();
+  const { projects } = configuration;
 
   return {
     props: {

@@ -1,6 +1,8 @@
 import configuration from 'website-config';
 
 import { getAllWorkspaces } from '@/services/getAllWorkspaces';
+import { getAllSocials } from '@/services/getAllSocials';
+
 import { PortraitImage } from '@/modules/PortraitImage';
 import { Workspaces } from '@/modules/Workplaces';
 import { Layout } from '@/modules/Layout';
@@ -47,6 +49,7 @@ export default function Home({
 export const getStaticProps = async () => {
   const { layout, metas, title } = configuration?.pages?.home;
   const { workplaces } = await getAllWorkspaces();
+  const { socials } = await getAllSocials();
 
   return {
     props: {
@@ -57,6 +60,7 @@ export const getStaticProps = async () => {
           metas,
         },
         workplaces,
+        socials,
       },
     },
   };

@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import getConfig from 'next/config';
 
-const UseSupabase = () => {
+export const UseSupabase = () => {
   const { publicRuntimeConfig } = getConfig();
 
   return createClient(
@@ -10,4 +10,11 @@ const UseSupabase = () => {
   );
 };
 
-export default UseSupabase;
+export const UseSupabaseServer = () => {
+  const { serverRuntimeConfig } = getConfig();
+
+  return createClient(
+    serverRuntimeConfig.SUPABASE_URL,
+    serverRuntimeConfig.SUPABASE_KEY
+  );
+};

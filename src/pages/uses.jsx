@@ -1,3 +1,4 @@
+import { getAllSocials } from '@/services/getAllSocials';
 import configuration from 'website-config';
 
 import { ChevronRightIcon } from '@/icons/ChevronIcon';
@@ -81,6 +82,7 @@ export default function Uses({
 
 export async function getStaticProps() {
   const { layout, metas, title } = configuration?.pages?.uses;
+  const { socials } = await getAllSocials();
   const { uses } = configuration;
 
   return {
@@ -92,6 +94,7 @@ export async function getStaticProps() {
           metas,
         },
         uses,
+        socials,
       },
     },
   };

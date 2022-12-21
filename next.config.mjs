@@ -14,6 +14,10 @@ const nextConfig = {
       },
     ],
   },
+  serverRuntimeConfig: {
+    SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    SUPABASE_KEY: process.env.NEXT_PUBLIC_SUPABASE_KEY,
+  },
   publicRuntimeConfig: {
     SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     SUPABASE_KEY: process.env.NEXT_PUBLIC_SUPABASE_KEY,
