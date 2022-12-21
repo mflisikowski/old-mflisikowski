@@ -1,9 +1,11 @@
-import { database } from '@/database';
+import UseSupabase from '@/composables/supabase';
 
 export const getAllWorkspaces = async () => {
-  const response = await database.from('workplaces').select('*').order('id');
+  const client = UseSupabase();
+  const response = await client.from('workplaces').select('*').order('id');
+  const workplaces = response.data || [];
 
   return {
-    workplaces: response.data || [],
+    workplaces,
   };
 };
