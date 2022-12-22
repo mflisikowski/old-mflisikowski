@@ -41,8 +41,8 @@ model Uses {
   name        String     @default("")
   description String     @default("")
   link        Boolean
-  link_label  String     @default("")
-  link_url    String     @default("")
+  link_label  String?
+  link_url    String?
   category_id String     @db.Uuid
   Categories  Categories @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
