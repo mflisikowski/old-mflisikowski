@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma:seed": "npx prisma db seed"
+  },
+  "prisma": {
+    "seed": "node --experimental-modules --es-module-specifier-resolution=node prisma/seed.mjs"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
@@ -27,8 +31,10 @@
   "devDependencies": {
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.2",
+    "node-color-log": "^10.0.2",
     "prettier": "^2.7.1",
     "prettier-plugin-prisma": "^4.4.0",
-    "prettier-plugin-tailwindcss": "^0.1.11"
+    "prettier-plugin-tailwindcss": "^0.1.11",
+    "uuid4": "^2.0.3"
   }
 }
