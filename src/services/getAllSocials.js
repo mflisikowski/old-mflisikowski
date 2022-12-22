@@ -1,3 +1,4 @@
+import { getAllCategories } from './getAllCategories';
 import { prisma } from '@/composables/prisma';
 
 // https://github.com/prisma/prisma/issues/4328
@@ -7,6 +8,9 @@ export const getAllSocials = async () => {
     ...unserialize,
     created_at: new Date(unserialize.created_at).toISOString(),
   }));
+
+  // const { categories } = await getAllCategories();
+  // console.log(categories);
 
   return {
     socials: serialized,

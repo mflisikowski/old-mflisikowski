@@ -1,4 +1,5 @@
 import { getAllSocials } from '@/services/getAllSocials';
+import { getAllUses } from '@/services/getAllUses';
 import configuration from 'website-config';
 
 import { ChevronRightIcon } from '@/icons/ChevronIcon';
@@ -44,32 +45,34 @@ export default function Uses({
       <Layout title={layout.title} intro={layout.intro}>
         <div className="space-y-20">
           {[workstation, development, design, productivity].map(
-            ({ id, title, uses }) => (
-              <Section key={id} title={title}>
+            ({ id, name, uses }) => (
+              <Section key={id} title={name}>
                 <ul role="list" className="space-y-16">
-                  {uses.map(({ description, title, link }) => (
-                    <li
-                      className="group relative flex flex-col items-start"
-                      key={title}
-                    >
-                      <UsesTitle href={link?.url}>{title}</UsesTitle>
+                  {uses?.map(
+                    ({ id, description, name, link, link_url, link_label }) => (
+                      <li
+                        className="group relative flex flex-col items-start"
+                        key={id}
+                      >
+                        <UsesTitle href={link_url}>{name}</UsesTitle>
 
-                      <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                        {description}
-                      </p>
-
-                      {link?.label && link?.url && (
-                        <p
-                          className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
-                          aria-hidden="true"
-                        >
-                          <LinkIcon className="inline-flex h-6 w-6" />
-                          {link?.label}
-                          <ChevronRightIcon className="ml-1 inline-flex h-4 w-4 stroke-current" />
+                        <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                          {description}
                         </p>
-                      )}
-                    </li>
-                  ))}
+
+                        {link && (
+                          <p
+                            className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
+                            aria-hidden="true"
+                          >
+                            <LinkIcon className="inline-flex h-6 w-6" />
+                            {link_label}
+                            <ChevronRightIcon className="ml-1 inline-flex h-4 w-4 stroke-current" />
+                          </p>
+                        )}
+                      </li>
+                    )
+                  )}
                 </ul>
               </Section>
             )
@@ -83,7 +86,7 @@ export default function Uses({
 export async function getStaticProps() {
   const { layout, metas, title } = configuration?.pages?.uses;
   const { socials } = await getAllSocials();
-  const { uses } = configuration;
+  const { uses } = await getAllUses();
 
   return {
     props: {
@@ -93,8 +96,8 @@ export async function getStaticProps() {
           title,
           metas,
         },
-        uses,
         socials,
+        uses,
       },
     },
   };
