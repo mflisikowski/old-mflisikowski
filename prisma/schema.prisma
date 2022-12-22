@@ -8,23 +8,24 @@ datasource db {
 }
 
 model Categories {
-  id         String   @id(map: "uses_categories_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  created_at DateTime @default(now()) @db.Timestamptz(6)
-  key        String   @default("")
-  name       String   @default("")
+  id         String     @id(map: "uses_categories_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  created_at DateTime   @default(now()) @db.Timestamptz(6)
+  key        String     @default("")
+  name       String     @default("")
+  Projects   Projects[]
   Uses       Uses[]
 }
 
 model Projects {
-  id              String   @id(map: "projects_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  created_at      DateTime @default(now()) @db.Timestamptz(6)
-  name            String   @default("")
-  repository_name String   @default("")
-  repository_url  String   @default("")
-  development_url String   @default("")
-  production_url  String   @default("")
-  category_name   String   @default("")
-  category_id     String
+  id              String     @id(map: "projects_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  created_at      DateTime   @default(now()) @db.Timestamptz(6)
+  name            String     @default("")
+  repository_name String     @default("")
+  repository_url  String     @default("")
+  development_url String     @default("")
+  production_url  String     @default("")
+  category_id     String     @db.Uuid
+  Categories      Categories @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model Socials {
