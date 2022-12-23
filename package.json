@@ -10,7 +10,8 @@
     "prisma:seed:category": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/category.mjs",
     "prisma:seed:company": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/company.mjs",
     "prisma:seed:use": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/use.mjs",
-    "prisma:seed:workplace": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/workplace.mjs"
+    "prisma:seed:workplace": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/workplace.mjs",
+    "prisma:seed": "yarn prisma:seed:category && yarn prisma:seed:company && yarn prisma:seed:use && yarn prisma:seed:workplace"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
