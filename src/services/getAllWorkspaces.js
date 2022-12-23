@@ -3,10 +3,9 @@ import { prisma } from '@/composables/prisma';
 
 // https://github.com/prisma/prisma/issues/4328
 export const getAllWorkspaces = async () => {
-  const unserialized = await prisma.workplace.findMany({});
-  const serialized = serialize(unserialized);
+  const workplaces = serialize(await prisma.workplace.findMany());
 
   return {
-    workplaces: serialized,
+    workplaces,
   };
 };

@@ -5,15 +5,17 @@ import { prisma } from '@/composables/prisma';
 // https://github.com/prisma/prisma/issues/4328
 export const getAllDevelopmentUses = async () => {
   const { category } = await getCategoryByKeyName('development');
-  const unserialized = await prisma.use.findMany({
-    where: { category_id: category.id },
-  });
-  const serialized = serialize(unserialized);
+
+  const uses = serialize(
+    await prisma.use.findMany({
+      where: { category_id: category.id },
+    })
+  );
 
   return {
     development: {
       category: category,
-      uses: serialized,
+      uses,
     },
   };
 };

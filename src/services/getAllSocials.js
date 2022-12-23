@@ -3,10 +3,9 @@ import { prisma } from '@/composables/prisma';
 
 // https://github.com/prisma/prisma/issues/4328
 export const getAllSocials = async () => {
-  const unserialized = await prisma.social.findMany({});
-  const serialized = serialize(unserialized);
+  const socials = serialize(await prisma.social.findMany());
 
   return {
-    socials: serialized,
+    socials,
   };
 };
