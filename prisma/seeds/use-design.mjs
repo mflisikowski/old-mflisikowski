@@ -1,4 +1,4 @@
-const design = [
+export const design = [
   {
     id: 'd156c709-83ab-4c64-ba61-98a1cfbead79',
     category_id: 'c83b6c11-d430-46a8-bccf-facb96edb281',
@@ -10,5 +10,3 @@ const design = [
     link_url: 'https://sketch.com',
   },
 ];
-
-module.exports = design;

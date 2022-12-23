@@ -1,4 +1,4 @@
-const workstation = [
+export const workstation = [
   {
     id: '95c6201c-c73d-4255-a110-909df95f9b83',
     category_id: '062960f8-933e-492a-8a01-7181361b0f3d',
@@ -30,5 +30,3 @@ const workstation = [
     link_url: '',
   },
 ];
-
-module.exports = workstation;

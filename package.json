@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma:seed": "npx prisma db seed"
-  },
-  "prisma": {
-    "seed": "node --experimental-modules --es-module-specifier-resolution=node prisma/seed.mjs"
+    "prisma:seed:category": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/category.mjs",
+    "prisma:seed:company": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/company.mjs",
+    "prisma:seed:use": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/use.mjs",
+    "prisma:seed:workplace": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/workplace.mjs"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {

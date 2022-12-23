@@ -1,4 +1,4 @@
-const development = [
+export const development = [
   {
     id: '5f92922c-2c3d-4d9d-bb5d-bf0a928a3637',
     category_id: '71700072-267e-47a6-bb41-a8b341c48686',
@@ -77,5 +77,3 @@ const development = [
     link_url: '',
   },
 ];
-
-module.exports = development;

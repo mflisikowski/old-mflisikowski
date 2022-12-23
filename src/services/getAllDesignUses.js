@@ -1,11 +1,11 @@
-import { getCategory } from '@/services/getCategory';
+import { getCategoryByKeyName } from '@/services/getCategory';
 import { prisma } from '@/composables/prisma';
 
 // https://github.com/prisma/prisma/issues/4328
 export const getAllDesignUses = async () => {
-  const { category } = await getCategory('design');
+  const { category } = await getCategoryByKeyName('design');
 
-  const unserialized = await prisma.uses.findMany({
+  const unserialized = await prisma.use.findMany({
     where: { category_id: category.id },
   });
 
@@ -15,7 +15,9 @@ export const getAllDesignUses = async () => {
   }));
 
   return {
-    design_category: category,
-    design_uses: serialized,
+    design: {
+      category: category,
+      uses: serialized,
+    },
   };
 };

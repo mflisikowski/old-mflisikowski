@@ -1,8 +1,8 @@
 import { prisma } from '@/composables/prisma';
 
 // https://github.com/prisma/prisma/issues/4328
-export const getCategory = async (key) => {
-  const unserialized = await prisma.categories.findFirst({
+export const getCategoryByKeyName = async (key) => {
+  const unserialized = await prisma.category.findFirst({
     where: { key: key },
   });
 

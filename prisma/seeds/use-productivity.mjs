@@ -1,4 +1,4 @@
-const productivity = [
+export const productivity = [
   {
     id: '2d534c4e-2655-4d29-84bf-24bfb8b872fb',
     category_id: '55575323-ee19-4d66-a39f-fc9a7b388d06',
@@ -10,5 +10,3 @@ const productivity = [
     link_url: '',
   },
 ];
-
-module.exports = productivity;

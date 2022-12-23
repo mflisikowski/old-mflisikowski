@@ -3,58 +3,122 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-model Categories {
-  id         String     @id(map: "uses_categories_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  created_at DateTime   @default(now()) @db.Timestamptz(6)
-  key        String     @default("")
-  name       String     @default("")
-  Projects   Projects[]
-  Uses       Uses[]
+model Category {
+  id         String    @id(map: "category_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  key        String    @default("")
+  name       String    @default("")
+  Project    Project[]
+  Uses       Use[]
+
+  @@map("categories")
 }
 
-model Projects {
-  id              String     @id(map: "projects_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  created_at      DateTime   @default(now()) @db.Timestamptz(6)
-  name            String     @default("")
-  repository_name String     @default("")
-  repository_url  String     @default("")
-  development_url String     @default("")
-  production_url  String     @default("")
-  category_id     String     @db.Uuid
-  Categories      Categories @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
+model Repository {
+  id String @id(map: "repository_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
 
-model Socials {
-  id         String   @id(map: "socials_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name String
+  url  String?
+
   created_at DateTime @default(now()) @db.Timestamptz(6)
-  name       String   @default("")
-  url        String   @default("")
-  mailto     String   @default("")
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+
+  Project Project[]
+
+  @@map("repositories")
 }
 
-model Uses {
-  id          String     @id(map: "uses_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  created_at  DateTime   @default(now()) @db.Timestamptz(6)
-  name        String     @default("")
-  description String     @default("")
-  link        Boolean
+model Project {
+  id String @id(map: "project_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
+  name            String
+  development_url String?
+  production_url  String?
+
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+
+  category_id String?   @db.Uuid
+  category    Category? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  repository_id String?     @db.Uuid
+  repository    Repository? @relation(fields: [repository_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("projects")
+}
+
+model Social {
+  id String @id(map: "social_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
+  name   String
+  url    String
+  mailto String?
+
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("socials")
+}
+
+model Use {
+  id String @id(map: "use_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
+  name        String  @unique @default("")
+  description String?
+  link        Boolean @default(false)
   link_label  String?
   link_url    String?
-  category_id String     @db.Uuid
-  Categories  Categories @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+
+  category_id String    @db.Uuid
+  category    Category? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("uses")
 }
 
-model Workplaces {
-  created_at       DateTime? @default(now()) @db.Timestamptz(6)
-  company_name     String    @default("") @db.VarChar
-  company_logotype String    @default("") @db.VarChar
-  job_title        String    @default("") @db.VarChar
-  job_start        String    @default("") @db.VarChar
-  job_end          String    @default("") @db.VarChar
-  job_present      Boolean   @default(false)
-  id               String    @id(map: "workplaces_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+model Company {
+  id String @id(map: "company_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
+  name     String  @unique @default("")
+  logotype String?
+
+  address String?
+  phone   String?
+  regon   String?
+  nip     String?
+
+  isContractor Boolean? @default(false)
+  isClient     Boolean? @default(false)
+
+  workplace Workplace[]
+
+  @@map("companies")
+}
+
+model Workplace {
+  id String @id(map: "workplace_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
+  title       String  @default("")
+  description String?
+
+  present    Boolean @default(false)
+  start      String? @default("")
+  start_full String? @default("")
+  end        String? @default("")
+  end_full   String? @default("")
+
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+
+  company_id String  @db.Uuid
+  company    Company @relation(fields: [company_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("workplaces")
 }
