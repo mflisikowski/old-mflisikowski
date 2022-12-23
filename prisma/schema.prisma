@@ -9,12 +9,15 @@ datasource db {
 }
 
 model Category {
-  id         String    @id(map: "category_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  created_at DateTime  @default(now()) @db.Timestamptz(6)
-  key        String    @unique @default("")
-  name       String    @default("")
-  Project    Project[]
-  Uses       Use[]
+  id String @id(map: "category_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
+  key     String    @unique @default("")
+  name    String    @default("")
+  Project Project[]
+  Uses    Use[]
+
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
 
   @@map("categories")
 }
