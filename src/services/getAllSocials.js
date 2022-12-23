@@ -6,6 +6,7 @@ export const getAllSocials = async () => {
   const serialized = [...unserialized].map((unserialize) => ({
     ...unserialize,
     created_at: new Date(unserialize.created_at).toISOString(),
+    updated_at: new Date(unserialize.updated_at).toISOString(),
   }));
 
   return {

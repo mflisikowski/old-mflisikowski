@@ -9,6 +9,7 @@ export const getCategoryByKeyName = async (key) => {
   const serialized = {
     ...unserialized,
     created_at: new Date(unserialized.created_at).toISOString(),
+    updated_at: new Date(unserialized.updated_at).toISOString(),
   };
 
   return {
