@@ -4,37 +4,32 @@ import { getAllDevelopmentUses } from '@/services/getAllDevelopmentUses';
 import { getAllDesignUses } from '@/services/getAllDesignUses';
 
 export const getAllUses = async () => {
-  const productivity = await getAllProductivityUses();
-  const workstation = await getAllWorkstationUses();
-  const development = await getAllDevelopmentUses();
-  const design = await getAllDesignUses();
-
-  const { productivity_uses, productivity_category } = productivity;
-  const { workstation_uses, workstation_category } = workstation;
-  const { development_uses, development_category } = development;
-  const { design_uses, design_category } = design;
+  const { productivity } = await getAllProductivityUses();
+  const { workstation } = await getAllWorkstationUses();
+  const { development } = await getAllDevelopmentUses();
+  const { design } = await getAllDesignUses();
 
   return {
     uses: {
       workstation: {
-        name: workstation_category.name,
-        uses: workstation_uses,
-        id: workstation_category.id,
+        name: workstation.category.name,
+        uses: workstation.uses,
+        id: workstation.category.id,
       },
       development: {
-        name: development_category.name,
-        uses: development_uses,
-        id: development_category.id,
+        name: development.category.name,
+        uses: development.uses,
+        id: development.category.id,
       },
       design: {
-        name: design_category.name,
-        uses: design_uses,
-        id: design_category.id,
+        name: design.category.name,
+        uses: design.uses,
+        id: design.category.id,
       },
       productivity: {
-        name: productivity_category.name,
-        uses: productivity_uses,
-        id: productivity_category.id,
+        name: productivity.category.name,
+        uses: productivity.uses,
+        id: productivity.category.id,
       },
     },
   };
