@@ -11,7 +11,7 @@ datasource db {
 model Category {
   id         String    @id(map: "category_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   created_at DateTime  @default(now()) @db.Timestamptz(6)
-  key        String    @default("")
+  key        String    @unique @default("")
   name       String    @default("")
   Project    Project[]
   Uses       Use[]
