@@ -20,6 +20,11 @@ export function Header() {
       label: 'Uses',
       href: '/uses',
     },
+    {
+      id: 3,
+      label: 'Curriculum Vitae',
+      href: '/curriculum-vitae',
+    },
   ];
 
   return (
