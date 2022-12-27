@@ -1,8 +1,10 @@
 import Image from 'next/image';
 
 const CustomImageLoader = ({ quality = 'smart', src }) => {
-  const uuid = src.trim();
-  return `https://ucarecdn.com/${uuid}/-/quality/${quality}/`;
+  const isHttp = src.startsWith('http');
+  const source = isHttp ? src : `https://ucarecdn.com/${src}`;
+
+  return `${source}/-/preview/-/quality/${quality}/`;
 };
 
 export const CustomImage = ({
