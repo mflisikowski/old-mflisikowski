@@ -1,0 +1,6 @@
+# Supabase
+migrations/
+.branches
+.temp
+config.toml
+seed.sql
