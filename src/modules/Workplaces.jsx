@@ -2,7 +2,9 @@ import { BriefcaseIcon } from '@/icons/BriefcaseIcon';
 import { CustomImage } from '@/components/CustomImage';
 import { ArrowDownIcon } from '@/icons/ArrowIcon';
 import { Button } from '@/components/Button';
+import useDownloader from 'react-use-downloader';
 import clsx from 'clsx';
+import { SpinnerIcon } from '@/icons/SpinnerIcon';
 
 const WorkspaceItem = ({
   role: { company, present, title, start, end, id },
@@ -37,11 +39,24 @@ const WorkspaceItem = ({
   );
 };
 
-const WorkplaceButton = ({ children, ...props }) => (
-  <Button className="group mt-6 w-full" {...props}>
-    {children}
-  </Button>
-);
+const WorkplaceButton = ({ children, ...props }) => {
+  const { download, isInProgress } = useDownloader();
+
+  const clickHandler = () => download('/api/download-cv', 'cv.pdf');
+
+  return (
+    <Button onClick={clickHandler} className="group mt-6 w-full" {...props}>
+      {!isInProgress ? (
+        children
+      ) : (
+        <>
+          Generating in progress
+          <SpinnerIcon className="-ml-1 mr-3 h-5 w-5 animate-spin stroke-zinc-400 transition group-active:stroke-zinc-600 motion-safe:animate-spin dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />{' '}
+        </>
+      )}
+    </Button>
+  );
+};
 
 export function Workspaces({ workplaces, className }) {
   const isWorkplaceAvailable = workplaces.length > 0;
@@ -66,7 +81,7 @@ export function Workspaces({ workplaces, className }) {
             ))}
           </ol>
 
-          <WorkplaceButton variant="secondary">
+          <WorkplaceButton variant="primary">
             Download CV
             <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
           </WorkplaceButton>
@@ -77,7 +92,9 @@ export function Workspaces({ workplaces, className }) {
             <p className="flex gap-4">No worplace to display here</p>
           </div>
 
-          <WorkplaceButton variant="disabled">Download CV</WorkplaceButton>
+          <WorkplaceButton variant="disabled" disabled>
+            Download CV
+          </WorkplaceButton>
         </>
       )}
     </div>
