@@ -22,8 +22,8 @@ export function Header() {
     },
     {
       id: 3,
-      label: 'Curriculum Vitae',
-      href: '/curriculum-vitae',
+      label: 'CV',
+      href: '/cv',
     },
   ];
 

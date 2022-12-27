@@ -52,6 +52,14 @@ const configuration = {
       title: `Uses - ${title}`,
       metas: [],
     },
+    cv: {
+      layout: {
+        title: '',
+        intro: '',
+      },
+      title: `CV - ${title}`,
+      metas: [],
+    },
   },
   projects,
 };
