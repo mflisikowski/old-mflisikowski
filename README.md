@@ -3,7 +3,7 @@
 To get started with this template, first install the dependenciesm and, run the development server
 
 ```bash
-yarn && yarn dev
+yarn && yarn local-ssl && yarn dev
 ```
 
 ## Customizing
@@ -47,3 +47,21 @@ feat: add hat wobble
 - https://www.conventionalcommits.org/
 - https://seesparkbox.com/foundry/semantic_commit_messages
 - http://karma-runner.github.io/1.0/dev/git-commit-msg.html
+
+## Locally trusted SSL certificate on macOS
+
+Install mkcert
+
+```shell
+brew install mkcert && mkcert -install
+```
+
+After running that command `mkcert` should have created a CA and added its certificate to the system’s trust store. If you’re following along on macOS, we can verify that by running `dump-trust-settings -d`.
+
+Create SSL cert with the desired hostname:
+
+```shell
+mkcert localhost
+```
+
+This should result two files `localhost.pem` and, `localhost-key.pem`.

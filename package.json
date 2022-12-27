@@ -13,7 +13,8 @@
     "prisma:seed:company": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/company.mjs",
     "prisma:seed:use": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/use.mjs",
     "prisma:seed:workplace": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/workplace.mjs",
-    "prisma:seed": "yarn prisma:seed:category && yarn prisma:seed:company && yarn prisma:seed:use && yarn prisma:seed:workplace"
+    "prisma:seed": "yarn prisma:seed:category && yarn prisma:seed:company && yarn prisma:seed:use && yarn prisma:seed:workplace",
+    "local-ssl": "npx local-ssl-proxy --key localhost-key.pem --cert localhost.pem --source 3001 --target 3000"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"
