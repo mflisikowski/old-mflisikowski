@@ -5,6 +5,9 @@ import { prisma } from '@/composables/prisma';
 export const getAllWorkspaces = async () => {
   const workplaces = serialize(
     await prisma.workplace.findMany({
+      orderBy: {
+        present: 'desc',
+      },
       include: {
         company: {
           select: {
