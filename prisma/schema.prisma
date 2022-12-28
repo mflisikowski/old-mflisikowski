@@ -143,9 +143,10 @@ model Page {
 model Route {
   id String @id(map: "navigation_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
 
-  label String @unique @default("")
-  href  String @default("")
-  Page  Page?
+  label  String  @unique @default("")
+  href   String  @default("")
+  hidden Boolean @default(false)
+  Page   Page?
 
   created_at DateTime @default(now()) @db.Timestamptz(6)
   updated_at DateTime @default(now()) @db.Timestamptz(6)
