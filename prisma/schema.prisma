@@ -153,3 +153,24 @@ model Route {
 
   @@map("routes")
 }
+
+model Setting {
+  id String @id(map: "setting_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
+  description String? @default("")
+  image       String? @default("")
+  title       String? @default("")
+
+  phone    String? @default("")
+  email    String? @default("")
+  postcode String? @default("")
+  address  String? @default("")
+  city     String? @default("")
+  country  String? @default("")
+  birtday  String? @default("")
+
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("settings")
+}
