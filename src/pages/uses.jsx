@@ -1,6 +1,8 @@
-import { getAllSocials } from '@/services/getAllSocials';
-import { getAllUses } from '@/services/getAllUses';
 import configuration from 'website-config';
+
+import { getAllSocials } from '@/services/getAllSocials';
+import { getAllRoutes } from '@/services/getAllRoutes';
+import { getAllUses } from '@/services/getAllUses';
 
 import { ChevronRightIcon } from '@/icons/ChevronIcon';
 import { Section } from '@/components/Section';
@@ -86,6 +88,7 @@ export default function Uses({
 export async function getStaticProps() {
   const { layout, metas, title } = configuration?.pages?.uses;
   const { socials } = await getAllSocials();
+  const { routes } = await getAllRoutes();
   const { uses } = await getAllUses();
 
   return {
@@ -97,6 +100,7 @@ export async function getStaticProps() {
           metas,
         },
         socials,
+        routes,
         uses,
       },
     },

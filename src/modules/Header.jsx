@@ -6,26 +6,8 @@ import { Container } from '@/modules/Container';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-export function Header() {
+export function Header({ routes }) {
   let isHomePage = useRouter().pathname === '/';
-
-  const routes = [
-    {
-      id: 1,
-      label: 'Projects',
-      href: '/projects',
-    },
-    {
-      id: 2,
-      label: 'Uses',
-      href: '/uses',
-    },
-    {
-      id: 3,
-      label: 'CV',
-      href: '/cv',
-    },
-  ];
 
   return (
     <>

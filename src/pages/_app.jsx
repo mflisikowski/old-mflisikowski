@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
       </div>
 
       <div className="relative">
-        <Header />
+        <Header routes={pageProps?.data?.routes || []} />
         <main>
           <Component {...pageProps} />
         </main>

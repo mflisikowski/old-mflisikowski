@@ -1,5 +1,6 @@
-import { Button } from '@/components/Button';
 import configuration from 'website-config';
+
+import { Button } from '@/components/Button';
 import { Layout } from '@/modules/Layout';
 
 import Head from 'next/head';
