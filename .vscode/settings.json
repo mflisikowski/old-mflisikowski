@@ -1,0 +1,12 @@
+{
+    "commitizen.autoSync": true,
+    "commitizen.showOutputChannel": "always",
+    "commitizen.useGitRoot": true,
+    "deno.config": "supabase/deno.json",
+    "deno.unstable": true,
+    "deno.enable": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.linkedEditing": true,
+    "explorer.confirmDragAndDrop": true,
+    "explorer.confirmDelete": true,
+}
