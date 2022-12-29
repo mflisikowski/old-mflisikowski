@@ -5,6 +5,7 @@ import { Button } from '@/components/Button';
 import useDownloader from 'react-use-downloader';
 import clsx from 'clsx';
 import { SpinnerIcon } from '@/icons/SpinnerIcon';
+import { DownloadIcon } from '@/icons/DownloadIcon';
 
 const WorkspaceItem = ({
   role: { company, present, title, start, end, id },
@@ -39,7 +40,7 @@ const WorkspaceItem = ({
   );
 };
 
-const WorkplaceButton = ({ children, ...props }) => {
+export const WorkplaceButton = ({ children, ...props }) => {
   const { download, isInProgress } = useDownloader();
 
   const clickHandler = () => download('/api/download-cv', 'cv.pdf');
@@ -83,7 +84,8 @@ export function Workspaces({ workplaces, className }) {
 
           <WorkplaceButton variant="primary">
             Download CV
-            <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+            {/* <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" /> */}
+            <DownloadIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
           </WorkplaceButton>
         </>
       ) : (
