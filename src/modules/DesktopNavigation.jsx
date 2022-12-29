@@ -26,8 +26,8 @@ function DesktopNavigationItem({ href, children }) {
 
 export function DesktopNavigation({ className, routes }) {
   return (
-    <nav className={className}>
-      <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+    <nav className={clsx(className, 'fixed top-0 z-50 mt-16 backdrop-filter')}>
+      <ul className="flex rounded-full bg-white/70 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
         {routes
           .filter((route) => !route.hidden)
           .map(({ label, href, id }) => (
