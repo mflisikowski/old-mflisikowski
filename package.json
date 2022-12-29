@@ -19,6 +19,7 @@
     "prisma:migrate": "npx prisma migrate dev --name $1",
     "prisma:generate": "npx prisma generate",
     "prisma:studio": "npx prisma studio",
+    "local-ssl": "npx local-ssl-proxy --key localhost-key.pem --cert localhost.pem --source 3001 --target 3000",
     "postinstall": "node install.mjs"
   },
   "prisma": {
@@ -27,7 +28,7 @@
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
     "@headlessui/react": "^1.7.7",
-    "@prisma/client": "^4.8.0",
+    "@prisma/client": "4.8.0",
     "@supabase/supabase-js": "^2.2.1",
     "@tailwindcss/typography": "^0.5.4",
     "autoprefixer": "^10.4.12",
@@ -37,6 +38,8 @@
     "next": "13.0.2",
     "octokit": "^2.0.10",
     "postcss-focus-visible": "^6.0.4",
+    "prisma": "4.8.0",
+    "prop-types": "^15.8.1",
     "puppeteer": "^19.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -44,6 +47,7 @@
     "tailwindcss": "^3.2.1"
   },
   "devDependencies": {
+    "await-spawn": "^4.0.2",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.2",
     "node-color-log": "^10.0.2",
