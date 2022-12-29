@@ -10,7 +10,7 @@ import { LinkIcon } from '@/icons/LinkIcon';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Projects({ data: { projects, metas, page } }) {
+export default function Projects({ projects, metas, page }) {
   return (
     <>
       <Head page={page} metas={metas} />
@@ -69,13 +69,11 @@ export const getServerSideProps = async ({ resolvedUrl }) => {
 
   return {
     props: {
-      data: {
-        projects: [],
-        socials,
-        routes,
-        metas,
-        page,
-      },
+      projects: [],
+      socials,
+      routes,
+      metas,
+      page,
     },
   };
 };

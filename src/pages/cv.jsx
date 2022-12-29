@@ -5,7 +5,7 @@ import { getAllRoutes } from '@/services/getAllRoutes';
 
 import { PageHead as Head, Layout } from '@/modules/Page';
 
-export default function CV({ data: { page, metas } }) {
+export default function CV({ page, metas }) {
   return (
     <>
       <Head page={page} metas={metas} />
@@ -26,13 +26,11 @@ export const getServerSideProps = async ({ resolvedUrl }) => {
 
   return {
     props: {
-      data: {
-        workplaces,
-        socials,
-        routes,
-        metas,
-        page,
-      },
+      workplaces,
+      socials,
+      routes,
+      metas,
+      page,
     },
   };
 };

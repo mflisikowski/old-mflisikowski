@@ -27,11 +27,9 @@ const UsesTitle = ({ as: Component = 'h3', href, children }) => (
 );
 
 export default function Uses({
-  data: {
-    uses: { workstation, development, design, productivity },
-    metas,
-    page,
-  },
+  uses: { workstation, development, design, productivity },
+  metas,
+  page,
 }) {
   return (
     <>
@@ -90,13 +88,11 @@ export const getServerSideProps = async ({ resolvedUrl }) => {
 
   return {
     props: {
-      data: {
-        socials,
-        routes,
-        metas,
-        page,
-        uses,
-      },
+      socials,
+      routes,
+      metas,
+      page,
+      uses,
     },
   };
 };
