@@ -1,10 +1,10 @@
 import { serialize } from '@/utils/prisma-utils';
 import { prisma } from '@/composables/prisma';
 
-export const getAllSettings = async (key) => {
-  const settings = serialize(await prisma.setting.findMany());
+export const getAllSettings = async () => {
+  const settings = serialize(await prisma.setting.findFirst());
 
   return {
-    settings: settings[0],
+    settings: settings,
   };
 };
