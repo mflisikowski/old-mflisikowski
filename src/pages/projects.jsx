@@ -1,36 +1,23 @@
-import configuration from 'website-config';
-
+import { getDataByRoute } from '@/services/getDataByRoute';
 import { getAllSocials } from '@/services/getAllSocials';
 import { getAllRoutes } from '@/services/getAllRoutes';
 
+import { PageHead as Head, Layout } from '@/modules/Page';
 import { ChevronRightIcon } from '@/icons/ChevronIcon';
 import { Section } from '@/components/Section';
 import { LinkIcon } from '@/icons/LinkIcon';
-import { Layout } from '@/modules/Layout';
 
 import Image from 'next/image';
-import Head from 'next/head';
 import Link from 'next/link';
 
-export default function Projects({
-  data: {
-    projects: { websites, opensource },
-    page: { layout, title, metas },
-  },
-}) {
+export default function Projects({ data: { projects, metas, page } }) {
   return (
     <>
-      <Head>
-        <title>{title}</title>
+      <Head page={page} metas={metas} />
 
-        {metas.map(({ name, content }) => (
-          <meta key={name} name={name} content={content} />
-        ))}
-      </Head>
-
-      <Layout title={layout.title} intro={layout.intro}>
+      <Layout page={page}>
         <div className="space-y-16">
-          {[websites, opensource].map(
+          {projects.map(
             ({ id, title, projects }) =>
               projects.length > 0 && (
                 <Section key={id} title={title}>
@@ -71,24 +58,24 @@ export default function Projects({
   );
 }
 
-export async function getStaticProps() {
-  const { layout, metas, title } = configuration?.pages?.projects;
+export const getServerSideProps = async ({ resolvedUrl }) => {
   const { socials } = await getAllSocials();
   const { routes } = await getAllRoutes();
-  const { projects } = configuration;
+
+  const { page, metas } = await getDataByRoute({
+    resolvedUrl,
+    routes,
+  });
 
   return {
     props: {
       data: {
-        page: {
-          layout,
-          title,
-          metas,
-        },
-        projects,
+        projects: [],
         socials,
         routes,
+        metas,
+        page,
       },
     },
   };
-}
+};

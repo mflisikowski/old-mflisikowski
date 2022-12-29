@@ -1,15 +1,13 @@
-import configuration from 'website-config';
-
+import { getDataByRoute } from '@/services/getDataByRoute';
 import { getAllSocials } from '@/services/getAllSocials';
 import { getAllRoutes } from '@/services/getAllRoutes';
 import { getAllUses } from '@/services/getAllUses';
 
+import { PageHead as Head, Layout } from '@/modules/Page';
 import { ChevronRightIcon } from '@/icons/ChevronIcon';
 import { Section } from '@/components/Section';
 import { LinkIcon } from '@/icons/LinkIcon';
-import { Layout } from '@/modules/Layout';
 
-import Head from 'next/head';
 import Link from 'next/link';
 
 const UsesLink = ({ children, ...props }) => (
@@ -31,20 +29,15 @@ const UsesTitle = ({ as: Component = 'h3', href, children }) => (
 export default function Uses({
   data: {
     uses: { workstation, development, design, productivity },
-    page: { layout, title, metas },
+    metas,
+    page,
   },
 }) {
   return (
     <>
-      <Head>
-        <title>{title}</title>
+      <Head page={page} metas={metas} />
 
-        {metas.map(({ name, content }) => (
-          <meta key={name} name={name} content={content} />
-        ))}
-      </Head>
-
-      <Layout title={layout.title} intro={layout.intro}>
+      <Layout page={page}>
         <div className="space-y-20">
           {[workstation, development, design, productivity].map(
             ({ id, name, uses }) => (
@@ -85,24 +78,25 @@ export default function Uses({
   );
 }
 
-export async function getStaticProps() {
-  const { layout, metas, title } = configuration?.pages?.uses;
+export const getServerSideProps = async ({ resolvedUrl }) => {
   const { socials } = await getAllSocials();
   const { routes } = await getAllRoutes();
   const { uses } = await getAllUses();
 
+  const { page, metas } = await getDataByRoute({
+    resolvedUrl,
+    routes,
+  });
+
   return {
     props: {
       data: {
-        page: {
-          layout,
-          title,
-          metas,
-        },
         socials,
         routes,
+        metas,
+        page,
         uses,
       },
     },
   };
-}
+};

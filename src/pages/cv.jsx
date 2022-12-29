@@ -1,50 +1,37 @@
-import configuration from 'website-config';
+import { getDataByRoute } from '@/services/getDataByRoute';
+import { getAllWorkspaces } from '@/services/getAllWorkspaces';
+import { getAllSocials } from '@/services/getAllSocials';
+import { getAllRoutes } from '@/services/getAllRoutes';
 
-import { Button } from '@/components/Button';
-import { Layout } from '@/modules/Layout';
+import { PageHead as Head, Layout } from '@/modules/Page';
 
-import Head from 'next/head';
-
-/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
-export default function curriculumVitae({
-  data: {
-    page: { layout, title, metas },
-  },
-}) {
+export default function CV({ data: { page, metas } }) {
   return (
     <>
-      <Head>
-        <title>{title}</title>
-
-        {metas.map(({ name, content }) => (
-          <meta key={name} name={name} content={content} />
-        ))}
-      </Head>
-      <Layout>
-        Curriculum Vitae{' '}
-        <Button
-          href="/api/download-cv"
-          className="group mt-6 w-full"
-          variant="secondary"
-        >
-          Download CV
-        </Button>
-      </Layout>
+      <Head page={page} metas={metas} />
+      <Layout page={page}>CV Page</Layout>
     </>
   );
 }
 
-export const getServerSideProps = async () => {
-  const { layout, metas, title } = configuration?.pages?.cv;
+export const getServerSideProps = async ({ resolvedUrl }) => {
+  const { workplaces } = await getAllWorkspaces();
+  const { socials } = await getAllSocials();
+  const { routes } = await getAllRoutes();
+
+  const { page, metas } = await getDataByRoute({
+    resolvedUrl,
+    routes,
+  });
 
   return {
     props: {
       data: {
-        page: {
-          layout,
-          title,
-          metas,
-        },
+        workplaces,
+        socials,
+        routes,
+        metas,
+        page,
       },
     },
   };

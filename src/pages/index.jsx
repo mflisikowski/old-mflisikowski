@@ -1,44 +1,21 @@
-import configuration from 'website-config';
-
+import { getDataByRoute } from '@/services/getDataByRoute';
 import { getAllWorkspaces } from '@/services/getAllWorkspaces';
 import { getAllSocials } from '@/services/getAllSocials';
 import { getAllRoutes } from '@/services/getAllRoutes';
 
+import { PageHead as Head, Layout } from '@/modules/Page';
 import { PortraitImage } from '@/modules/PortraitImage';
 import { Workspaces } from '@/modules/Workplaces';
-import { Layout } from '@/modules/Layout';
-import { Intro } from '@/modules/Intro';
 
-import Head from 'next/head';
-
-export default function Home({
-  data: {
-    page: { layout, title, metas },
-    workplaces,
-  },
-}) {
+export default function Home({ workplaces, metas, page }) {
   return (
     <>
-      <Head>
-        <title>{title}</title>
+      <Head page={page} metas={metas} />
 
-        {metas.map(({ name, content }) => (
-          <meta key={name} name={name} content={content} />
-        ))}
-      </Head>
-
-      <Layout>
+      <Layout page={page}>
         <div className="grid grid-rows-[auto_1fr] gap-y-16 lg:gap-y-12">
-          <div className=" lg:row-span-2">
-            <Intro title={layout.title} intro={layout.intro} />
-          </div>
-
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-y-12">
-            <PortraitImage
-              visibilityRegions={layout.image.visibilityRegions}
-              src={layout.image.src}
-            />
-
+            <PortraitImage src="https://ucarecdn.com/2ff13d60-3bb1-4a6e-be58-ea0c8986a3e3/" />
             <Workspaces className="lg:order-first" workplaces={workplaces} />
           </div>
         </div>
@@ -47,24 +24,23 @@ export default function Home({
   );
 }
 
-export const getStaticProps = async () => {
-  const { layout, metas, title } = configuration?.pages?.home;
+export const getServerSideProps = async ({ resolvedUrl }) => {
   const { workplaces } = await getAllWorkspaces();
   const { socials } = await getAllSocials();
   const { routes } = await getAllRoutes();
 
+  const { metas, page } = await getDataByRoute({
+    resolvedUrl,
+    routes,
+  });
+
   return {
     props: {
-      data: {
-        page: {
-          layout,
-          title,
-          metas,
-        },
-        workplaces,
-        socials,
-        routes,
-      },
+      workplaces,
+      socials,
+      routes,
+      metas,
+      page,
     },
   };
 };
