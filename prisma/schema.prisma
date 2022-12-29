@@ -80,7 +80,7 @@ model Use {
   created_at DateTime @default(now()) @db.Timestamptz(6)
   updated_at DateTime @default(now()) @db.Timestamptz(6)
 
-  category_id String    @db.Uuid
+  category_id String?   @db.Uuid
   category    Category? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("uses")
@@ -120,8 +120,8 @@ model Workplace {
   created_at DateTime @default(now()) @db.Timestamptz(6)
   updated_at DateTime @default(now()) @db.Timestamptz(6)
 
-  company_id String  @db.Uuid
-  company    Company @relation(fields: [company_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  company_id String?  @db.Uuid
+  company    Company? @relation(fields: [company_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("workplaces")
 }
@@ -129,13 +129,16 @@ model Workplace {
 model Page {
   id String @id(map: "page_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
 
-  title String @unique @default("")
+  title      String  @unique @default("")
+  subheading String? @default("")
+  heading    String? @default("")
+  content    String? @default("")
 
   created_at DateTime @default(now()) @db.Timestamptz(6)
   updated_at DateTime @default(now()) @db.Timestamptz(6)
 
-  route_id String @unique @db.Uuid
-  route    Route  @relation(fields: [route_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  route_id String? @unique @db.Uuid
+  route    Route?  @relation(fields: [route_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("pages")
 }
