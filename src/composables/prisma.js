@@ -1,9 +1,15 @@
-// https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices
+// https://github.com/prisma/prisma/issues/6219#issuecomment-1200982341
 import { PrismaClient } from '@prisma/client';
 
-const globalForPrisma = global;
+export let prisma;
 
-export const prisma =
-  globalForPrisma.prisma || new PrismaClient({ errorFormat: 'pretty' });
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+if (typeof window === 'undefined') {
+  if (process.env['NODE_ENV'] === 'production') {
+    prisma = new PrismaClient({ errorFormat: 'pretty' });
+  } else {
+    if (!global.prisma) {
+      global.prisma = new PrismaClient({ errorFormat: 'pretty' });
+    }
+    prisma = global.prisma;
+  }
+}
