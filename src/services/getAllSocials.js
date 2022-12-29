@@ -1,15 +1,17 @@
-import { serialize } from '@/utils/prisma-utils';
 import { prisma } from '@/composables/prisma';
 
-// https://github.com/prisma/prisma/issues/4328
 export const getAllSocials = async () => {
-  const socials = serialize(
-    await prisma.social.findMany({
-      orderBy: {
-        name: 'asc',
-      },
-    })
-  );
+  const socials = await prisma.social.findMany({
+    select: {
+      id: true,
+      mailto: true,
+      name: true,
+      url: true,
+    },
+    orderBy: {
+      name: 'asc',
+    },
+  });
 
   return {
     socials,

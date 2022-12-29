@@ -58,9 +58,9 @@ model Project {
 model Social {
   id String @id(map: "social_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
 
-  name   String
-  url    String
-  mailto String?
+  name   String  @default("")
+  url    String? @default("")
+  mailto String? @default("")
 
   created_at DateTime @default(now()) @db.Timestamptz(6)
   updated_at DateTime @default(now()) @db.Timestamptz(6)

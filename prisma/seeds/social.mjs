@@ -15,6 +15,10 @@ async function seed() {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/mflisikowski/',
     },
+    {
+      name: 'Email',
+      mailto: 'contact@mflisikowski.dev',
+    },
   ];
 
   try {

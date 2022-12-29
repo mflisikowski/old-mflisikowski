@@ -15,7 +15,7 @@ export function Footer({ socials }) {
                     className="group -m-1 p-1"
                     aria-label={name}
                     target="_blank"
-                    href={url || mailto}
+                    href={url.length > 0 ? url : mailto}
                   >
                     {name}
                   </Link>
