@@ -4,6 +4,7 @@ export const getPage = async (routeId) => {
   const page = await prisma.page.findUnique({
     select: {
       subheading: true,
+      fullscreen: true,
       heading: true,
       title: true,
       id: true,
