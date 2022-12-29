@@ -8,16 +8,18 @@
     "start": "next start",
     "lint": "next lint",
     "deploy": "npx prisma migrate deploy",
-    "prisma:seed:workplace": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/workplace.mjs",
-    "prisma:seed:category": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/category.mjs",
-    "prisma:seed:company": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/company.mjs",
-    "prisma:seed:routes": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/routes.mjs",
-    "prisma:seed:use": "node --experimental-modules --es-module-specifier-resolution=node prisma/seeds/use.mjs",
-    "prisma:seed": "yarn prisma:seed:category && yarn prisma:seed:company && yarn prisma:seed:use && yarn prisma:seed:workplace && yarn prisma:seed:routes",
+    "prisma:seed:workplace": "node prisma/seeds/workplace.mjs",
+    "prisma:seed:category": "node prisma/seeds/category.mjs",
+    "prisma:seed:company": "node prisma/seeds/company.mjs",
+    "prisma:seed:setting": "node prisma/seeds/setting.mjs",
+    "prisma:seed:route": "node prisma/seeds/route.mjs",
+    "prisma:seed:page": "node prisma/seeds/page.mjs",
+    "prisma:seed:meta": "node prisma/seeds/meta.mjs",
+    "prisma:seed:use": "node prisma/seeds/use.mjs",
     "prisma:migrate": "npx prisma migrate dev --name $1",
     "prisma:generate": "npx prisma generate",
     "prisma:studio": "npx prisma studio",
-    "local-ssl": "npx local-ssl-proxy --key localhost-key.pem --cert localhost.pem --source 3001 --target 3000"
+    "postinstall": "node install.mjs"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"

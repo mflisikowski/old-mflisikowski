@@ -8,16 +8,15 @@ import logger from 'node-color-log';
 async function seed() {
   const count = await prisma?.use?.count();
 
-  if (count && count > 0) {
-    await prisma?.use?.deleteMany();
-  }
+  if (count && count > 0) await prisma?.use?.deleteMany();
 
-  await prisma?.use?.createMany({
-    data: [...workstation, ...development, ...design, ...productivity],
-  });
+  const data = [...workstation, ...development, ...design, ...productivity];
+
+  try {
+    await prisma?.use?.createMany({ data });
+  } catch (error) {
+    logger.error(error.message);
+  }
 }
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
-seed()
-  .catch((e) => logger.error(e) && process.exit(1))
-  .finally(async () => await prisma.$disconnect());
+seed().finally(async () => await prisma.$disconnect());
