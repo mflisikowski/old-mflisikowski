@@ -3,11 +3,11 @@ import { prisma } from '@/composables/prisma';
 
 export const getAllRoutes = async () => {
   const routes = serialize(
-    await prisma.route.findMany({
+    (await prisma.route.findMany({
       orderBy: {
         label: 'asc',
       },
-    })
+    })) || []
   );
 
   return {

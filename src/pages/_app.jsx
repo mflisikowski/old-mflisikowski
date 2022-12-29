@@ -14,11 +14,11 @@ export default function App({ Component, pageProps }) {
       </div>
 
       <div className="relative">
-        <Header routes={pageProps?.routes || []} />
+        <Header routes={pageProps?.routes} />
         <main>
           <Component {...pageProps} />
         </main>
-        <Footer socials={pageProps?.socials || []} />
+        <Footer socials={pageProps?.socials} />
       </div>
     </>
   );

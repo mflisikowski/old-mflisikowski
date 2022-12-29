@@ -12,6 +12,7 @@
     "prisma:seed:category": "node prisma/seeds/category.mjs",
     "prisma:seed:company": "node prisma/seeds/company.mjs",
     "prisma:seed:setting": "node prisma/seeds/setting.mjs",
+    "prisma:seed:social": "node prisma/seeds/social.mjs",
     "prisma:seed:route": "node prisma/seeds/route.mjs",
     "prisma:seed:page": "node prisma/seeds/page.mjs",
     "prisma:seed:meta": "node prisma/seeds/meta.mjs",
