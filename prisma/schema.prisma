@@ -123,6 +123,9 @@ model Workplace {
   company_id String?  @db.Uuid
   company    Company? @relation(fields: [company_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
+  Employee    Employee? @relation(fields: [employee_id], references: [id])
+  employee_id String?   @db.Uuid
+
   @@map("workplaces")
 }
 
@@ -172,7 +175,6 @@ model Setting {
   address  String? @default("")
   city     String? @default("")
   country  String? @default("")
-  birtday  String? @default("")
 
   created_at DateTime @default(now()) @db.Timestamptz(6)
   updated_at DateTime @default(now()) @db.Timestamptz(6)
@@ -190,4 +192,76 @@ model Meta {
   updated_at DateTime @default(now()) @db.Timestamptz(6)
 
   @@map("metas")
+}
+
+model Availability {
+  id String @id(map: "availability_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
+  answer      Boolean @default(false)
+  description String? @default("")
+
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+
+  Employee   Employee? @relation(fields: [employeeId], references: [id])
+  employeeId String?   @db.Uuid
+
+  @@map("availabilities")
+}
+
+model Relocation {
+  id String @id(map: "relocation_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
+  answer      Boolean @default(false)
+  description String? @default("")
+
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+
+  Employee    Employee? @relation(fields: [employee_id], references: [id])
+  employee_id String?   @db.Uuid
+
+  @@map("relocations")
+}
+
+model Status {
+  id String @id(map: "status_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
+  name String? @unique @default("")
+
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+
+  Employee    Employee? @relation(fields: [employee_id], references: [id])
+  employee_id String?   @db.Uuid
+
+  @@map("statuses")
+}
+
+model Employee {
+  id String @id(map: "employee_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
+  pesel_number String? @default("")
+  birtday      String? @default("")
+  email        String? @default("")
+  name         String? @default("")
+  postcode     String? @default("")
+  address      String? @default("")
+  phone        String? @default("")
+  avatar       String? @default("")
+  portrait     String? @default("")
+  location     String? @default("")
+  title        String? @default("")
+  about        String? @default("")
+  city         String? @default("")
+
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+
+  availability Availability[]
+  relocation   Relocation[]
+  workplace    Workplace[]
+  status       Status[]
+
+  @@map("employees")
 }
