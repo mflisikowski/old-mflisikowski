@@ -1,11 +1,6 @@
-import { BROWSERLESS_WS_ENDPOINT } from '@/composables/env';
+import { BROWSERLESS } from '@/composables/env';
 import { puppeteer } from '@/composables/puppeteer';
 
-// Supabase Edge function issues with deno-puppeteer
-// https://github.com/lucacasonato/deno-puppeteer/issues/72
-// https://github.com/lucacasonato/deno-puppeteer/issues/73
-
-// Temp solution
 export default async function handler(req, res) {
   res.setHeader('Content-Disposition', 'attachment; filename="cv.pdf"');
   res.setHeader('Content-Type', 'application/pdf');
@@ -14,8 +9,7 @@ export default async function handler(req, res) {
     const url = 'https://mflisikowski.dev/cv';
 
     const browser = await puppeteer.connect({
-      // Browserless deploy on Railway https://railway.app
-      browserWSEndpoint: BROWSERLESS_WS_ENDPOINT,
+      browserWSEndpoint: BROWSERLESS.WS,
     });
 
     const page = await browser.newPage();

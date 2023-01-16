@@ -1,5 +1,4 @@
 import { Octokit } from 'octokit';
+import { GITHUB } from '@/components/env';
 
-export const octokit = new Octokit({
-  auth: process.env.NEXT_PUBLIC_GITHUB_PERSONAL_TOKEN,
-});
+export const octokit = new Octokit({ auth: GITHUB.TOKEN });
