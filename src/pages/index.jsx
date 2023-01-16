@@ -1,46 +1,79 @@
-import { getDataByRoute } from '@/services/getDataByRoute';
-import { getAllWorkspaces } from '@/services/getAllWorkspaces';
-import { getAllSocials } from '@/services/getAllSocials';
-import { getAllRoutes } from '@/services/getAllRoutes';
+import { getEmployee } from '@/services/getEmployee';
+import { PageHead as Head } from '@/components/Page';
+import { Container } from '@/components/Container';
+import { Utils } from '@/utils';
 
-import { PageHead as Head, Layout } from '@/modules/Page';
-import { PortraitImage } from '@/modules/PortraitImage';
-import { Workspaces } from '@/modules/Workplaces';
-
-export default function Home({ workplaces, metas, page }) {
+export default function Home({ meta, page }) {
   return (
     <>
-      <Head page={page} metas={metas} />
+      <Head page={page} meta={meta} />
 
-      <Layout page={page}>
-        <div className="grid grid-rows-[auto_1fr] gap-y-16 lg:gap-y-12">
-          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-y-12">
-            <PortraitImage src="https://ucarecdn.com/2ff13d60-3bb1-4a6e-be58-ea0c8986a3e3/" />
-            <Workspaces className="lg:order-first" workplaces={workplaces} />
+      <Container>
+        <header className="max-w-2xl">
+          {Utils.Htmls.render(page?.heading)}
+          {Utils.Htmls.render(page?.subheading)}
+        </header>
+
+        <div className="mt-16 sm:mt-20">
+          <div className="inline space-y-8">
+            {Utils.Htmls.render(page?.content)}
           </div>
         </div>
-      </Layout>
+      </Container>
     </>
   );
 }
 
 export const getServerSideProps = async ({ resolvedUrl }) => {
-  const { workplaces } = await getAllWorkspaces();
-  const { socials } = await getAllSocials();
-  const { routes } = await getAllRoutes();
+  const employee_id = 'b84f66a6-7134-438e-8123-f27fe78f35ec';
 
-  const { metas, page } = await getDataByRoute({
+  const { employee, relations } = await getEmployee({
+    employee_id: employee_id,
     resolvedUrl,
-    routes,
+    relations: {
+      status: true,
+      social: true,
+      route: {
+        select: {
+          hidden: true,
+          label: true,
+          href: true,
+          id: true,
+          page: {
+            select: {
+              title: true,
+            },
+          },
+        },
+      },
+      meta: {
+        select: {
+          content: true,
+          name: true,
+          id: true,
+        },
+      },
+      page: {
+        select: {
+          subheading: true,
+          heading: true,
+          content: true,
+        },
+        route: true,
+      },
+    },
   });
 
   return {
     props: {
-      workplaces,
-      socials,
-      routes,
-      metas,
-      page,
+      employee: {
+        ...employee,
+        status: relations?.status || null,
+      },
+      social: relations?.social || null,
+      route: relations?.route || null,
+      meta: relations?.meta || null,
+      page: relations?.page || null,
     },
   };
 };
