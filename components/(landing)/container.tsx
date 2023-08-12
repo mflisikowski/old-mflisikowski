@@ -1,4 +1,7 @@
+"use client"
+
 import { ForwardRefRenderFunction } from "react";
+import { motion } from "framer-motion";
 
 /**
  * Common properties for container components.
@@ -21,9 +24,9 @@ const OuterContainer: ForwardRefRenderFunction<HTMLDivElement, ContainerProps> =
   { className = '', children, ...props },
   ref
 ) => (
-  <div ref={ref} className={`sm:px-8 ${className}`} {...props}>
+  <motion.div ref={ref} className={`sm:px-8 ${className}`} {...props}>
     <div className="mx-auto max-w-7xl lg:px-8">{children}</div>
-  </div>
+  </motion.div>
 );
 
 /**
@@ -33,9 +36,9 @@ const InnerContainer: ForwardRefRenderFunction<HTMLDivElement, ContainerProps> =
   { className = '', children, ...props },
   ref
 ) => (
-  <div className={`relative px-4 sm:px-8 lg:px-12 ${className}`} {...props} ref={ref}>
+  <motion.div className={`relative px-4 sm:px-8 lg:px-12 ${className}`} {...props} ref={ref}>
     <div className="mx-auto max-w-2xl lg:max-w-5xl">{children}</div>
-  </div>
+  </motion.div>
 );
 
 /**
