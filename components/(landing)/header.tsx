@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { Brand } from '@/logotypes/brand';
 import { Dialog } from '@headlessui/react';
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -27,7 +28,7 @@ export default function Header() {
             <nav className="mx-auto flex items-center justify-between" aria-label="Global">
                 <div className="flex lg:flex-1">
                     <Link href="/" className="-m-1.5 p-1.5 uppercase">
-                        <span>MFD</span>
+                        <Brand className="fill-zinc-800 w-6 h-auto" />
                     </Link>
                 </div>
                 <div className="flex lg:hidden">
@@ -58,7 +59,7 @@ export default function Header() {
                 <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div className="flex items-center justify-between">
                         <Link href="#" className="-m-1.5 p-1.5">
-                            <span>MFD</span>
+                            <Brand className="fill-zinc-800 w-6 h-auto" />
                         </Link>
 
                         <button
