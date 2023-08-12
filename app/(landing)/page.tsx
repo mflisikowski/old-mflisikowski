@@ -1,9 +1,7 @@
-import { Container } from "@/components/Container";
+import { Container } from "@/components/(landing)/container";
 
 export default function HomePage() {
   return (
-    <Container>
-      Home page
-    </Container>
+    <>Home page</>
   )
 }
