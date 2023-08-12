@@ -11,7 +11,7 @@ const navigation = [
     { name: 'Uses', href: '/uses' }
 ]
 
-export default function Header() {
+export const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return (

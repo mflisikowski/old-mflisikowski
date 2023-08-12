@@ -8,9 +8,9 @@
 "use client";
 
 import { Container } from "@/components/(landing)/container";
-import Footer from "@/components/(landing)/footer";
+import { Footer } from "@/components/(landing)/footer";
 import { GridPattern } from "@/components/(landing)/grid-pattern";
-import Header from "@/components/(landing)/header";
+import { Header } from "@/components/(landing)/header";
 import { motion, MotionConfig, useReducedMotion } from "framer-motion";
 
 interface LandingLayoutProps {

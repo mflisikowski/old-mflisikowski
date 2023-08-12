@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function Footer() {
+export const Footer = () => {
     return (
         <motion.footer>
             Footer
