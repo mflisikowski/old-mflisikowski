@@ -9,8 +9,8 @@ export default function NotFound() {
         <p className="text-sm mb-4">
           Wróć do{" "}
           <Link
-            href="/"
             className="underline underline-offset-2 hover:underline-offset-auto"
+            href="/"
           >
             strony głównej
           </Link>
