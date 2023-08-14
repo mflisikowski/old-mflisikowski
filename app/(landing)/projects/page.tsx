@@ -1,7 +1,3 @@
 export default function ProjectsPage() {
-  return (
-    <>
-      Projects
-    </>
-  )
+  return <>Projects</>;
 }

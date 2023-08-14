@@ -1,7 +1,3 @@
 export default function UsesPage() {
-  return (
-    <>
-      Uses
-    </>
-  )
+  return <>Uses</>;
 }

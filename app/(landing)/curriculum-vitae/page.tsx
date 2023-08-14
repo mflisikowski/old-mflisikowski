@@ -1,7 +1,3 @@
 export default function CurriculumVitaePage() {
-  return (
-    <>
-      CV
-    </>
-  )
+  return <>CV</>;
 }
