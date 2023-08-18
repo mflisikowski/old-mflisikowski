@@ -1,6 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { Brand } from "@/icons/brand";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { AuthSignIn } from "../(auth)/auth-sign-int";
+import { AuthSignOut } from "../(auth)/auth-sign-out";
 import { Navigation } from "./navigation";
 
 const navigation = [
@@ -11,6 +15,12 @@ const navigation = [
 ];
 
 export const Header = async () => {
+  const supabase = createServerComponentClient({ cookies });
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
   return (
     <header className="py-16 bg-white/40">
       <nav
@@ -27,6 +37,13 @@ export const Header = async () => {
             className="text-sm leading-6 text-gray-900 uppercase"
             items={navigation}
           />
+        </div>
+        <div className="flex items-center">
+          {session ? (
+            <AuthSignOut className="text-sm leading-6 text-gray-900 uppercase hidden" />
+          ) : (
+            <AuthSignIn className="text-sm leading-6 text-gray-900 uppercase hidden" />
+          )}
         </div>
       </nav>
     </header>
