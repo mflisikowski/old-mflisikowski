@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ForwardRefRenderFunction } from "react";
+import { ForwardRefRenderFunction, PropsWithChildren, forwardRef } from "react";
 
 /**
  * Common properties for container components.
@@ -20,7 +20,7 @@ interface ContainerProps {
  * @param props - Additional props.
  * @param ref - Forwarded ref.
  */
-const OuterContainer: ForwardRefRenderFunction<
+export const OuterContainer: ForwardRefRenderFunction<
   HTMLDivElement,
   ContainerProps
 > = ({ className = "", children, ...props }, ref) => (
@@ -32,7 +32,7 @@ const OuterContainer: ForwardRefRenderFunction<
 /**
  * An inner container component.
  */
-const InnerContainer: ForwardRefRenderFunction<
+export const InnerContainer: ForwardRefRenderFunction<
   HTMLDivElement,
   ContainerProps
 > = ({ className = "", children, ...props }, ref) => (
@@ -48,16 +48,12 @@ const InnerContainer: ForwardRefRenderFunction<
 /**
  * A composition of the OuterContainer and InnerContainer components.
  */
-const Container: ForwardRefRenderFunction<HTMLDivElement, ContainerProps> & {
-  Outer: typeof OuterContainer;
-  Inner: typeof InnerContainer;
-} = ({ children, ...props }, ref) => (
-  <OuterContainer ref={ref} {...props}>
-    <InnerContainer>{children}</InnerContainer>
-  </OuterContainer>
+export const Container = forwardRef<HTMLElement, PropsWithChildren<{}>>(
+  ({ children, ...props }, ref) => (
+    <OuterContainer ref={ref} {...props}>
+      <InnerContainer>{children}</InnerContainer>
+    </OuterContainer>
+  )
 );
 
-Container.Outer = OuterContainer;
-Container.Inner = InnerContainer;
-
-export { Container };
+Container.displayName = "Container";
