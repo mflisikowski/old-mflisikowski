@@ -5,14 +5,12 @@ import { NextResponse } from 'next/server'
 export const dynamic = 'force-dynamic'
 
 /**
- * Handles a GET request for server-side authentication flow.
- * 
- * The `/auth/callback` route is required for the server-side auth flow implemented
- * by the Auth Helpers package. It exchanges an auth code for the user's session.
- * https://supabase.com/docs/guides/auth/auth-helpers/nextjs#managing-sign-in-with-code-exchange
- * 
- * @param request - The incoming HTTP request.
- * @returns A redirect response to the origin URL of the request.
+ * Handles a GET request and performs authentication using Supabase.
+ * If a 'code' query parameter is present in the request URL, it exchanges the code for a session.
+ * After the sign-in process completes, it redirects the user to the origin URL.
+ * If the 'code' parameter is not present, it redirects the user to the origin URL with a status code of 302.
+ * @param request - The incoming GET request.
+ * @returns A NextResponse object with a redirect to the origin URL and an optional status code of 302.
  */
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url)
@@ -21,8 +19,12 @@ export async function GET(request: Request) {
   if (code) {
     const supabase = createRouteHandlerClient({ cookies })
     await supabase.auth.exchangeCodeForSession(code)
+    
+    // URL to redirect to after sign in process completes
+    return NextResponse.redirect(requestUrl.origin)
   }
 
-  // URL to redirect to after sign in process completes
-  return NextResponse.redirect(requestUrl.origin)
+  return NextResponse.redirect(requestUrl.origin, {
+    status: 302,
+  })
 }
