@@ -4,6 +4,12 @@ import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
+/**
+ * Handles a POST request by signing out the user and redirecting them to the login page.
+ * 
+ * @param request - The request object containing information about the incoming request.
+ * @returns A NextResponse object with a redirect to the login page.
+ */
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url)
   const supabase = createRouteHandlerClient({ cookies })
@@ -11,7 +17,6 @@ export async function POST(request: Request) {
   await supabase.auth.signOut()
 
   return NextResponse.redirect(`${requestUrl.origin}/login`, {
-    // a 301 status is required to redirect from a POST to a GET route
     status: 301,
   })
 }

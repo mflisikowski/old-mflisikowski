@@ -4,6 +4,15 @@ import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
+/**
+ * Handles a POST request to authenticate a user using Supabase.
+ * 
+ * @param request - The incoming HTTP request.
+ * @returns A redirect response with a status code of 301 (Moved Permanently).
+ *          The destination URL depends on the authentication result.
+ *          If there is an error, the user is redirected to the login page with an error message.
+ *          Otherwise, the user is redirected to the origin URL.
+ */
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url)
   const formData = await request.formData()
@@ -12,22 +21,17 @@ export async function POST(request: Request) {
   const supabase = createRouteHandlerClient({ cookies })
 
   const { error } = await supabase.auth.signInWithPassword({
-    email,
     password,
+    email,
   })
   
   if (error) {
-    return NextResponse.redirect(
-      `${requestUrl.origin}/login?error=Could not authenticate user`,
-      {
-        // a 301 status is required to redirect from a POST to a GET route
-        status: 301,
-      }
-    )
+    return NextResponse.redirect(`${requestUrl.origin}/login?error=Could not authenticate user`, {
+      status: 301,
+    })
   }
 
   return NextResponse.redirect(requestUrl.origin, {
-    // a 301 status is required to redirect from a POST to a GET route
     status: 301,
   })
 }
