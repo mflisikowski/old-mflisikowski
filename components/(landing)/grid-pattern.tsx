@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import React, { useEffect, useId, useRef, useState } from "react";
 
@@ -170,7 +172,7 @@ export function GridPattern({
    * Render the main SVG element containing the grid pattern.
    */
   return (
-    <motion.svg ref={ref} aria-hidden="true" {...props}>
+    <motion.svg aria-hidden="true" ref={ref} {...props}>
       <rect width="100%" height="100%" fill={`url(#${id})`} strokeWidth="0" />
       <motion.svg
         x="50%"
