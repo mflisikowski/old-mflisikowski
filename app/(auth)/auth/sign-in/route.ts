@@ -26,7 +26,7 @@ export async function POST(request: Request) {
   })
   
   if (error) {
-    return NextResponse.redirect(`${requestUrl.origin}/login?error=Could not authenticate user`, {
+    return NextResponse.redirect(`${requestUrl.origin}/login?error=${error}`, {
       status: 301,
     })
   }
