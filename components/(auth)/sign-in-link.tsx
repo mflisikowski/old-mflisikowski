@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export function AuthSignIn({ ...props }) {
+export function SignInLink({ ...props }) {
   return (
     <Link href="/login" {...props}>
       Login

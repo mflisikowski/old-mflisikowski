@@ -1,11 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { Brand } from "@/icons/brand";
+import { SignOutButton } from "@/components/(auth)/sign-out-button";
+import { Navigation } from "@/components/(landing)/navigation";
+import { BrandIcon } from "@/icons/brand-icon";
+
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import { AuthSignIn } from "../(auth)/auth-sign-int";
-import { AuthSignOut } from "../(auth)/auth-sign-out";
-import { Navigation } from "./navigation";
+import { SignInLink } from "../(auth)/sign-in-link";
 
 const navigation = [
   { name: "CV", href: "/curriculum-vitae" },
@@ -29,7 +30,7 @@ export const Header = async () => {
       >
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5 uppercase">
-            <Brand className="fill-zinc-800 w-6 h-auto" />
+            <BrandIcon className="fill-zinc-800 w-6 h-auto" />
           </Link>
         </div>
         <div className="flex gap-x-12">
@@ -40,9 +41,9 @@ export const Header = async () => {
         </div>
         <div className="flex items-center">
           {session ? (
-            <AuthSignOut className="text-sm leading-6 text-gray-900 uppercase hidden" />
+            <SignOutButton className="text-sm leading-6 text-gray-900 uppercase hidden" />
           ) : (
-            <AuthSignIn className="text-sm leading-6 text-gray-900 uppercase hidden" />
+            <SignInLink className="text-sm leading-6 text-gray-900 uppercase hidden" />
           )}
         </div>
       </nav>
