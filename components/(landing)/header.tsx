@@ -1,12 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
+import { SignInButton } from "@/components/(auth)/sign-in-button";
 import { SignOutButton } from "@/components/(auth)/sign-out-button";
 import { Navigation } from "@/components/(landing)/navigation";
 import { BrandIcon } from "@/icons/brand-icon";
 
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
 import Link from "next/link";
-import { SignInLink } from "../(auth)/sign-in-link";
 
 const navigation = [
   { name: "CV", href: "/curriculum-vitae" },
@@ -16,12 +13,6 @@ const navigation = [
 ];
 
 export const Header = async () => {
-  const supabase = createServerComponentClient({ cookies });
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
   return (
     <header className="py-16 bg-white/40">
       <nav
@@ -40,11 +31,8 @@ export const Header = async () => {
           />
         </div>
         <div className="flex items-center">
-          {session ? (
-            <SignOutButton className="text-sm leading-6 text-gray-900 uppercase hidden" />
-          ) : (
-            <SignInLink className="text-sm leading-6 text-gray-900 uppercase hidden" />
-          )}
+          <SignOutButton className="text-sm leading-6 text-gray-900 uppercase hidden" />
+          <SignInButton className="text-sm leading-6 text-gray-900 uppercase" />
         </div>
       </nav>
     </header>
