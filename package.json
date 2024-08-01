@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "prisma generate"
     "ssl": "npx local-ssl-proxy --key localhost-key.pem --cert localhost.pem --source 3001 --target 3000",
     "dev": "next dev",
     "build": "npx prisma generate && next build",
